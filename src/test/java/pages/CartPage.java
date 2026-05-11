@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,21 +10,6 @@ public class CartPage extends BasePage {
 
     @FindBy(css = "#cart-total")
     WebElement cartBtn;
-
-    @FindBy(css = "button[title='Remove']")
-    WebElement removeBtn;
-
-    @FindBy(css = "input.form-control")
-    WebElement qtyInput;
-
-    @FindBy(css = "button[title='Update']")
-    WebElement updateBtn;
-
-    @FindBy(css = ".text-center p")
-    WebElement emptyMsg;
-
-    @FindBy(css = ".cart-info table tbody tr td:nth-child(2)")
-    WebElement productName;
 
     public CartPage(WebDriver driver) {
         super(driver);
@@ -35,20 +21,25 @@ public class CartPage extends BasePage {
     }
 
     public void updateQty(String qty) {
-        type(qtyInput, qty);
-        click(updateBtn);
+        WebElement q = driver.findElement(By.cssSelector("input.form-control"));
+        type(q, qty);
+        WebElement u = driver.findElement(By.cssSelector("button[data-original-title='Update']"));
+        click(u);
     }
 
     public void removeProduct() {
-        click(removeBtn);
+        WebElement r = driver.findElement(By.cssSelector("button[data-original-title='Remove']"));
+        click(r);
     }
 
     public String getEmptyMsg() {
-        return getText(emptyMsg);
+        WebElement e = driver.findElement(By.cssSelector("#content p"));
+        return getText(e);
     }
 
     public String getProductName() {
-        return getText(productName);
+        WebElement e = driver.findElement(By.cssSelector(".table-responsive td:nth-child(2) a"));
+        return getText(e);
     }
 
     public String getCartTotal() {

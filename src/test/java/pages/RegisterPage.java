@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -31,9 +32,6 @@ public class RegisterPage extends BasePage {
     @FindBy(css = "input[value='Continue']")
     WebElement continueBtn;
 
-    @FindBy(css = ".alert-danger")
-    WebElement errorMsg;
-
     public RegisterPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -55,7 +53,8 @@ public class RegisterPage extends BasePage {
     }
 
     public String getError() {
-        return getText(errorMsg);
+        WebElement e = driver.findElement(By.cssSelector(".text-danger"));
+        return getText(e);
     }
 
 }

@@ -14,12 +14,6 @@ public class SearchPage extends BasePage {
     @FindBy(css = "button.btn-default")
     WebElement searchBtn;
 
-    @FindBy(css = "h2")
-    WebElement resultHeader;
-
-    @FindBy(css = "p.text-danger")
-    WebElement noResultMsg;
-
     public SearchPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -31,7 +25,8 @@ public class SearchPage extends BasePage {
     }
 
     public String getResultHeader() {
-        return getText(resultHeader);
+        WebElement e = driver.findElement(By.cssSelector("#content h1"));
+        return getText(e);
     }
 
     public String getFirstProductName() {
@@ -45,7 +40,8 @@ public class SearchPage extends BasePage {
     }
 
     public String getNoResultMsg() {
-        return getText(noResultMsg);
+        WebElement e = driver.findElement(By.cssSelector("#content p"));
+        return getText(e);
     }
 
 }

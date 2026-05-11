@@ -13,22 +13,20 @@ import java.util.Date;
 public class ScreenshotListener implements ITestListener {
 
     public void onTestFailure(ITestResult result) {
-        Object obj = result.getInstance();
-        WebDriver driver = null;
         try {
-            driver = (WebDriver) obj.getClass().getDeclaredField("driver").get(obj);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (driver != null) {
-            try {
+            Object obj = result.getInstance();
+            java.lang.reflect.Field f = obj.getClass().getDeclaredField("driver");
+            f.setAccessible(true);
+            WebDriver driver = (WebDriver) f.get(obj);
+            if (driver != null) {
                 String time = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
                 String name = result.getName() + "_" + time + ".png";
+                new File("screenshots").mkdirs();
                 File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
                 Files.copy(src.toPath(), new File("screenshots/" + name).toPath());
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
