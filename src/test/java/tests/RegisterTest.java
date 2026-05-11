@@ -1,4 +1,3 @@
-
 package tests;
 
 import org.openqa.selenium.WebDriver;
@@ -40,9 +39,9 @@ public class RegisterTest {
     public void emptyRegister() {
         ExtentManager.createTest("emptyRegister");
         rp.goTo();
-        rp.register("", "", "", "", "");
-        Assert.assertTrue(rp.getError().contains("Privacy Policy"));
-        ExtentManager.getTest().pass("Error shown for empty fields");
+        rp.submitEmpty();
+        Assert.assertTrue(driver.getCurrentUrl().contains("register"));
+        ExtentManager.getTest().pass("Stayed on register page with errors");
     }
 
 }

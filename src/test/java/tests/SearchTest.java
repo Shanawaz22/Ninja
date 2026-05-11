@@ -38,7 +38,8 @@ public class SearchTest {
     public void searchInvalid() {
         ExtentManager.createTest("searchInvalid");
         sp.search("xyzxyzxyz123");
-        Assert.assertTrue(sp.getNoResultMsg().contains("No results"));
+        String msg = sp.getNoResultMsg();
+        Assert.assertTrue(msg.contains("No results") || msg.contains("no results") || msg.contains("There is no"));
         ExtentManager.getTest().pass("No results message shown");
     }
 

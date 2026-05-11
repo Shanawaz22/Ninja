@@ -23,12 +23,12 @@ public class CartPage extends BasePage {
     public void updateQty(String qty) {
         WebElement q = driver.findElement(By.cssSelector("input.form-control"));
         type(q, qty);
-        WebElement u = driver.findElement(By.cssSelector("button[data-original-title='Update']"));
+        WebElement u = driver.findElement(By.cssSelector(".input-group-btn .btn-primary"));
         click(u);
     }
 
     public void removeProduct() {
-        WebElement r = driver.findElement(By.cssSelector("button[data-original-title='Remove']"));
+        WebElement r = driver.findElement(By.xpath("//button[contains(@onclick,'cart.remove')]"));
         click(r);
     }
 

@@ -52,6 +52,10 @@ public class RegisterPage extends BasePage {
         click(continueBtn);
     }
 
+    public void submitEmpty() {
+        click(continueBtn);
+    }
+
     public String getError() {
         WebElement e = driver.findElement(By.cssSelector(".text-danger"));
         return getText(e);
