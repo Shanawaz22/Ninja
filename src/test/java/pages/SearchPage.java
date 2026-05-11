@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,9 +16,6 @@ public class SearchPage extends BasePage {
 
     @FindBy(css = "h2")
     WebElement resultHeader;
-
-    @FindBy(css = ".product-thumb h4 a")
-    WebElement firstProduct;
 
     @FindBy(css = "p.text-danger")
     WebElement noResultMsg;
@@ -37,11 +35,13 @@ public class SearchPage extends BasePage {
     }
 
     public String getFirstProductName() {
-        return getText(firstProduct);
+        WebElement e = driver.findElement(By.cssSelector(".product-thumb h4 a"));
+        return getText(e);
     }
 
     public void openFirstProduct() {
-        click(firstProduct);
+        WebElement e = driver.findElement(By.cssSelector(".product-thumb h4 a"));
+        click(e);
     }
 
     public String getNoResultMsg() {

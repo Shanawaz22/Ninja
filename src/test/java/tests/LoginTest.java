@@ -45,6 +45,7 @@ public class LoginTest {
 
     @DataProvider
     public Object[][] loginData() {
+        ConfigReader.load();
         return new Object[][] {
                 { ConfigReader.get("email"), ConfigReader.get("password"), true },
                 { "bad@gmail.com", "badpass", false }

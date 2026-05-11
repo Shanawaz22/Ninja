@@ -10,6 +10,7 @@ public class DriverSetup {
     static WebDriver driver;
 
     public static WebDriver getDriver() {
+        ConfigReader.load();
         String browser = ConfigReader.get("browser");
         if (browser.equals("chrome")) {
             WebDriverManager.chromedriver().setup();
@@ -23,8 +24,13 @@ public class DriverSetup {
     }
 
     public static void quitDriver() {
-        if (driver != null) {
-            driver.quit();
+        try {
+            if (driver != null) {
+                driver.quit();
+                driver = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
