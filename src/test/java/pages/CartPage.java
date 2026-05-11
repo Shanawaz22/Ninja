@@ -26,11 +26,12 @@ public class CartPage extends BasePage {
         WebElement u = driver.findElement(By.cssSelector(".input-group-btn .btn-primary"));
         click(u);
     }
-
     public void removeProduct() {
-        WebElement r = driver.findElement(By.xpath("//button[contains(@onclick,'cart.remove')]"));
+        WebElement r = driver.findElement(By.cssSelector("button.btn-danger"));
         click(r);
     }
+
+
 
     public String getEmptyMsg() {
         WebElement e = driver.findElement(By.cssSelector("#content p"));

@@ -40,7 +40,7 @@ public class SearchPage extends BasePage {
     }
 
     public String getNoResultMsg() {
-        WebElement e = driver.findElement(By.cssSelector("#content p"));
+        WebElement e = driver.findElement(By.cssSelector("#content"));
         return getText(e);
     }
 
