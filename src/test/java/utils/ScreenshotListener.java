@@ -1,5 +1,4 @@
 package utils;
-
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -9,9 +8,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 public class ScreenshotListener implements ITestListener {
-
     public void onTestFailure(ITestResult result) {
         try {
             Object obj = result.getInstance();
